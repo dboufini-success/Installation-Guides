@@ -5,3 +5,7 @@ sudo hostname docker
 sudo apt update -y
 sudo apt install docker.io -y
 sudo usermod -aG docker ubuntu
+
+#when you install docker, you are a type of docker user, with no priviledges. Switch back to ubuntu and continue as normal 
+
+sudo su - ubuntu
