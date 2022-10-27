@@ -1,0 +1,50 @@
+#install zip
+sudo yum install zip
+
+#install sdk
+curl -s "https://get.sdkman.io" | bash
+
+#install groovy
+sdk install groovy 3.0.3
+
+#confirm that groovy has been installed
+$ which groovy
+
+#pull the project from the bitbucket site and go into the directory
+$ git clone https://javapda@bitbucket.org/javapda/nexus3-export-import.git
+$ cd nexus3-export-import
+
+cd ${HOME}
+
+#vim into .nexus3-export-import.yaml and paste the following:
+# preferences for nexus3-export-import
+
+description: "preferences for nexus3-export-import"
+installations:
+    - name : localhost
+      nexus3Url : http://localhost:8081
+      credentialsText : admin:admin123
+
+source:
+  repoName : maven-snapshots
+  nexus3Url : http://localhost:8081
+  credentials : admin:admin123
+  verbose: true
+
+target:
+  repoName : fake2
+  nexus3Url : http://localhost:8081
+  credentials : admin:admin123
+  verbose: true
+
+tempDir: /tmp/artifact-cache
+verbose: true
+artifactPackagingFilters: [
+  pom,jar,war]
+  # pom,jar,war]
+  
+  #run the following:
+  chmod a+x nexus3ExportImport.groovy
+  
+  #run the script:
+./nexus3ExportImport.groovy
